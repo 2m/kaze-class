@@ -10,8 +10,6 @@ using case classes, and now need to be made stable API, thus having to resign
 from using case classes – this project takes a `Class[T]` and generates a **KazeClass** from it,
 which is a string representation of a "manual implementation" of the most basic features of case clases.
 
-A `KazeClass` uses identity equality (not structural equality), be aware of that.
-
 Naming
 ------
 
@@ -33,7 +31,9 @@ KazeClass.of[Person].toClipboard
 
 to get a "desugared" case class, ready to replace your case class.
 
-You may configure what to generate with a few flags:
+By default a `KazeClass` uses identity equality (not structural equality). To generate `hashCode` and `equals` methods for structural equality call `.withEqualsHashcode` before rendering.
+
+There are a few more flags, which you may configure:
 
 ```scala
 KazeClass.of[Person]
